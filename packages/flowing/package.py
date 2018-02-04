@@ -32,6 +32,8 @@ class Flowing(CMakePackage):
 
     version('master', git='github.com:f-sim/flowing.git', branch='master')
 
+    depends_on('googletest+gmock', type=('build', 'link'))
+
     def cmake_args(self):
         options = []
 
