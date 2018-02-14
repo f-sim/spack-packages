@@ -34,6 +34,7 @@ class Splinelib(CMakePackage):
     version('rwthdevelop', git='git.rwth-aachen.de:splinelibpp/splinelib.git', branch='develop')
 
     variant('cpp', default=True, description='Compile witch C++ interface.')
+    variant('coverage', default=False, description='Compile with coverage support.')
 
     depends_on("boost", when='+cpp')
     depends_on("googletest+gmock", when='+cpp')
@@ -44,7 +45,9 @@ class Splinelib(CMakePackage):
 
         options.extend([
             '-DSPLINELIB_CPP_API=%s' % (
-                'ON' if '+cpp' in spec else 'OFF')
+                'ON' if '+cpp' in spec else 'OFF'),
+            '-DSPLINELIB_COVERAGE=%s' % (
+                'ON' if '+coverage' in spec else 'OFF')
             ])
 
         return options
